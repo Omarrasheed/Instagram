@@ -14,6 +14,7 @@
 		22990D0B20F4079000766D74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22990D0A20F4079000766D74 /* Assets.xcassets */; };
 		22990D0E20F4079000766D74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22990D0C20F4079000766D74 /* LaunchScreen.storyboard */; };
 		22990D1120F4079000766D74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22990D1020F4079000766D74 /* main.m */; };
+		6B28B7DAE0DD811389B85C6D /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F75AD8A18719AE4BCC75C2 /* libPods-Instagram.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,9 @@
 		22990D0D20F4079000766D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22990D0F20F4079000766D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22990D1020F4079000766D74 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		56F75AD8A18719AE4BCC75C2 /* libPods-Instagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF6145CF78E30BF1C4F5384F /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
+		FDE48957374ADC734FDC7217 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B28B7DAE0DD811389B85C6D /* libPods-Instagram.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +51,8 @@
 			children = (
 				22990CFD20F4078F00766D74 /* Instagram */,
 				22990CFC20F4078F00766D74 /* Products */,
+				A0B8F4AB010AB15A73F088A7 /* Pods */,
+				23B2B238F95326D2D67B92FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +81,23 @@
 			path = Instagram;
 			sourceTree = "<group>";
 		};
+		23B2B238F95326D2D67B92FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56F75AD8A18719AE4BCC75C2 /* libPods-Instagram.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A0B8F4AB010AB15A73F088A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF6145CF78E30BF1C4F5384F /* Pods-Instagram.debug.xcconfig */,
+				FDE48957374ADC734FDC7217 /* Pods-Instagram.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -81,9 +105,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22990D1420F4079000766D74 /* Build configuration list for PBXNativeTarget "Instagram" */;
 			buildPhases = (
+				F915459057122FFDEF61108C /* [CP] Check Pods Manifest.lock */,
 				22990CF720F4078F00766D74 /* Sources */,
 				22990CF820F4078F00766D74 /* Frameworks */,
 				22990CF920F4078F00766D74 /* Resources */,
+				9FCF9752B6FDB3AFEAC8B9EC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,6 +164,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9FCF9752B6FDB3AFEAC8B9EC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F915459057122FFDEF61108C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Instagram-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		22990CF720F4078F00766D74 /* Sources */ = {
@@ -285,6 +350,7 @@
 		};
 		22990D1520F4079000766D74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF6145CF78E30BF1C4F5384F /* Pods-Instagram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +368,7 @@
 		};
 		22990D1620F4079000766D74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDE48957374ADC734FDC7217 /* Pods-Instagram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
