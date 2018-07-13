@@ -11,7 +11,6 @@
 #import <ParseUI/ParseUI.h>
 #import "ProfileFeedCollectionViewCell.h"
 #import "Post.h"
-#import "PostTableViewCell.h"
 #import "PostDetailViewController.h"
 #import "EditProfileViewController.h"
 
@@ -64,12 +63,18 @@
     [self setupEditProfileButton];
     [self setupPageTitleLabel];
     [self setupUsernameLabel];
+    [self setupBioLabel];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupCollectionView];
+}
+
+-(void) setupBioLabel {
+    self.bioLabel.text = self.user[@"bio"];
+    [self.bioLabel sizeToFit];
 }
 
 -(void)setupUsernameLabel {
@@ -257,8 +262,8 @@
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
-     if ([sender isKindOfClass:[PostTableViewCell class]]) {
-         PostTableViewCell *cell = sender;
+     if ([sender isKindOfClass:[ProfileFeedCollectionViewCell class]]) {
+         ProfileFeedCollectionViewCell *cell = sender;
          PostDetailViewController *postDetailViewController = [segue destinationViewController];
          postDetailViewController.post = cell.post;
          postDetailViewController.user = cell.user;

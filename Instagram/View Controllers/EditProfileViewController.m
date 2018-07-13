@@ -11,20 +11,15 @@
 #import "MBProgressHUD.h"
 
 @interface EditProfileViewController () <UITextViewDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
-@property (weak, nonatomic) IBOutlet UITextView *bioTextField;
 
 @end
 
 @implementation EditProfileViewController
 
 - (void)viewDidLayoutSubviews {
-    self.profilePicture.file = PFUser.currentUser[@"image"];
-    [self.profilePicture loadInBackground];
-    self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.height/2;
-    self.profilePicture.clipsToBounds = YES;
+    [self setupProfilePic];
+    [self setupNameTextField];
+    [self setupUsernameLabel];
 }
 
 - (void)viewDidLoad {
@@ -33,6 +28,22 @@
     // Do any additional setup after loading the view.
     [self.nameTextField becomeFirstResponder];
 }
+
+- (void)setupProfilePic {
+    self.profilePicture.file = PFUser.currentUser[@"image"];
+    [self.profilePicture loadInBackground];
+    self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.height/2;
+    self.profilePicture.clipsToBounds = YES;
+}
+
+- (void)setupUsernameLabel {
+    self.usernameTextField.placeholder = self.user.username;
+}
+
+- (void)setupNameTextField {
+    self.nameTextField.placeholder = self.user[@"fullName"];
+}
+
 
 - (IBAction)changeProfilePic:(id)sender {
     

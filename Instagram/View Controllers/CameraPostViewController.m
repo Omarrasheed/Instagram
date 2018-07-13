@@ -25,6 +25,7 @@
 @end
 
 @implementation CameraPostViewController
+
 - (IBAction)viewTapped:(id)sender {
     [self.CaptionTextView resignFirstResponder];
 }
@@ -35,7 +36,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:true];
     if (!self.posting) {
-        [self setupImagePickerVC];
         self.CaptionTextView.text = @"Enter caption...";
         self.CaptionTextView.textColor = [UIColor lightGrayColor];
         self.posting = YES;
@@ -64,25 +64,41 @@
 }
 - (IBAction)imagePressed:(id)sender {
     NSLog(@"hit func");
-    [self setupImagePickerVC];
+    [self setupImagePickerVC:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 - (IBAction)postButtonPressed:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:true];
-    [Post postUserImage:self.postImage withCaption:self.CaptionTextView.text location: self.locationLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            [MBProgressHUD hideHUDForView:self.view animated:true];
-            [self.delegate didPost];
-            [self.CaptionTextView resignFirstResponder];
-            self.postImageView.image = nil;
-            self.tabBarController.selectedIndex = 0;
-            self.posting = NO;
+    if ([self.postImageView.image isEqual:[UIImage imageNamed:@"image_placeholder"]]) {
+        [self createAlert:@"Please select an Image"];
+    } else {
+        [MBProgressHUD showHUDAddedTo:self.view animated:true];
+        NSString *captionText =@"";
+        if (![self.CaptionTextView.text isEqualToString:@"Enter caption..."]) {
+            captionText = self.CaptionTextView.text;
         }
-    }];
-    
+        [Post postUserImage:self.postImageView.image withCaption:captionText location: self.locationLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                [MBProgressHUD hideHUDForView:self.view animated:true];
+                [self.delegate didPost];
+                [self.CaptionTextView resignFirstResponder];
+                self.postImageView.image = nil;
+                self.tabBarController.selectedIndex = 0;
+                self.posting = NO;
+            }
+        }];
+    }
 }
+
 - (IBAction)cancelButtonPressed:(id)sender {
     self.tabBarController.selectedIndex = 0;
     self.posting = YES;
+}
+
+- (IBAction)photoGallerySelected:(id)sender {
+    [self setupImagePickerVC:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (IBAction)cameraButton:(id)sender {
+    [self setupImagePickerVC:UIImagePickerControllerSourceTypeCamera];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
@@ -113,6 +129,9 @@
     [textView resignFirstResponder];
 }
 
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
@@ -131,17 +150,16 @@
     self.posting = YES;
 }
 
-- (void)setupImagePickerVC {
+- (void)setupImagePickerVC: (UIImagePickerControllerSourceType) source {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePickerVC.sourceType = source;
     }
     
     [self presentViewController:imagePickerVC animated:YES completion:nil];
@@ -159,6 +177,34 @@
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
+- (void)createAlert:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:message
+                                                            preferredStyle:(UIAlertControllerStyleAlert)];
+    // create a cancel action
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             // handle cancel response here. Doing nothing will dismiss the view.
+                                                         }];
+    // add the cancel action to the alertController
+    [alert addAction:cancelAction];
+    
+    // create an OK action
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                         // handle response here.
+                                                     }];
+    // add the OK action to the alert controller
+    [alert addAction:okAction];
+    
+    
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

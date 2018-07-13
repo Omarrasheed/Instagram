@@ -45,6 +45,13 @@
     
     self.tabBarController.delegate = self;
     
+    UIImage *img = [UIImage imageNamed:@"Instagram_logotext"];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [imgView setImage:img];
+    // setContent mode aspect fit
+    [imgView setContentMode:UIViewContentModeScaleAspectFit];
+    self.navigationItem.titleView = imgView;
+    
     [self pullPosts];
 }
 
