@@ -20,6 +20,6 @@
 @property (nonatomic, strong) NSNumber * _Nonnull likeCount;
 @property (nonatomic, strong) NSNumber * _Nonnull commentCount;
 
-+ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption location:(NSString *_Nullable)location withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end

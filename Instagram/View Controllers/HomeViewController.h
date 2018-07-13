@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController
+@protocol HomeViewDelegate
+
+-(void)doubleTapHit;
 
 @end
+
+@interface HomeViewController : UIViewController
+
+@property (weak, nonatomic) id<HomeViewDelegate> delegate;
+
+@end
+

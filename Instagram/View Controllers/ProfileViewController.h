@@ -11,6 +11,9 @@
 
 @interface ProfileViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UINavigationItem *pageTitleLabel;
 @property (strong, nonatomic) PFUser *user;
+@property (strong, nonatomic) NSMutableArray *usersPosts;
+@property BOOL isCurrentUser;
 
 @end

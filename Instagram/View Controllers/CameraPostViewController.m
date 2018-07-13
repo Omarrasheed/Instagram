@@ -8,18 +8,28 @@
 
 #import "CameraPostViewController.h"
 #import "Post.h"
+#import "MBProgressHUD.h"
+#import <ParseUI/ParseUI.h>
+#import "AddLocationViewController.h"
 
-@interface CameraPostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
+@interface CameraPostViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, locationViewDelegate>
 
 @property (strong, nonatomic) UIImage *postImage;
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UITextView *CaptionTextView;
+@property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UIButton *addLocationButton;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UIButton *clearLocationButton;
 
 @end
 
 @implementation CameraPostViewController
 - (IBAction)viewTapped:(id)sender {
     [self.CaptionTextView resignFirstResponder];
+}
+- (IBAction)xButtonTapped:(id)sender {
+    self.locationLabel.text = @"Select a location...";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -35,9 +45,18 @@
 - (void)viewDidLayoutSubviews {
     self.CaptionTextView.scrollEnabled = NO;
     self.CaptionTextView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.CaptionTextView.layer.borderColor = [UIColor.blackColor CGColor];
+    self.CaptionTextView.layer.borderColor = [UIColor.lightGrayColor CGColor];
     self.CaptionTextView.layer.borderWidth = 2;
     self.CaptionTextView.delegate = self;
+    self.CaptionTextView.layer.cornerRadius = 6;
+    
+    self.profileImageView.file = PFUser.currentUser[@"image"];
+    self.profileImageView.layer.cornerRadius = 22;
+    [self.profileImageView loadInBackground];
+    
+    self.clearLocationButton.layer.borderColor = [[UIColor blueColor] CGColor];
+    self.clearLocationButton.layer.borderWidth = 1;
+    self.clearLocationButton.layer.cornerRadius = self.clearLocationButton.frame.size.height/2;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,8 +67,10 @@
     [self setupImagePickerVC];
 }
 - (IBAction)postButtonPressed:(id)sender {
-    [Post postUserImage:self.postImage withCaption:self.CaptionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [MBProgressHUD showHUDAddedTo:self.view animated:true];
+    [Post postUserImage:self.postImage withCaption:self.CaptionTextView.text location: self.locationLabel.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
+            [MBProgressHUD hideHUDForView:self.view animated:true];
             [self.delegate didPost];
             [self.CaptionTextView resignFirstResponder];
             self.postImageView.image = nil;
@@ -57,6 +78,7 @@
             self.posting = NO;
         }
     }];
+    
 }
 - (IBAction)cancelButtonPressed:(id)sender {
     self.tabBarController.selectedIndex = 0;
@@ -65,6 +87,11 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
     [textView sizeToFit];
+}
+
+- (void)sendLocationTitle:(NSString *)locationTitle {
+    NSLog(@"hit");
+    self.locationLabel.text = locationTitle;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView\
@@ -139,14 +166,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([sender isKindOfClass:[UIButton class]]) {
+        AddLocationViewController *locationViewController = [segue destinationViewController];
+        locationViewController.delegate = self;
+    }
 }
-*/
+
 
 @end

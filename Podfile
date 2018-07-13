@@ -9,5 +9,7 @@ target 'Instagram' do
   pod 'Parse'
   pod 'ParseUI'
   pod 'AFNetworking'
+  pod 'MBProgressHUD'
+  pod 'DateTools'
 
 end

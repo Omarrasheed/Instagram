@@ -28,6 +28,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    UIColor *topColor = [UIColor colorWithRed:241.0/255.0 green:178.0/255.0 blue:122.0/255.0 alpha:1.0];
+    UIColor *bottomColor = [UIColor colorWithRed:219.0/255.0 green:86.0/255.0 blue:147.0/255.0 alpha:1.0];
+    
+    // Create the gradient
+    CAGradientLayer *theViewGradient = [CAGradientLayer layer];
+    theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    theViewGradient.frame = self.view.bounds;
+    
+    //Add gradient to view
+    [self.view.layer insertSublayer:theViewGradient atIndex:0];
 }
 - (IBAction)loginButtonPressed:(id)sender {
     if (![self.usernameTextField.text isEqual:@""] || ![self.PasswordTextField.text isEqual:@""]) {

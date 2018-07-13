@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2253D48220F5C26100832AD4 /* ProfileFeedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2253D48120F5C26100832AD4 /* ProfileFeedCollectionViewCell.m */; };
+		2253D48720F6DA4500832AD4 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2253D48620F6DA4500832AD4 /* AddLocationViewController.m */; };
+		2253D48920F6DAF700832AD4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2253D48820F6DAF600832AD4 /* MapKit.framework */; };
+		2253D48C20F6DCF100832AD4 /* LocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2253D48B20F6DCF100832AD4 /* LocationTableViewCell.m */; };
+		2253D48F20F80D0B00832AD4 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2253D48E20F80D0B00832AD4 /* EditProfileViewController.m */; };
 		22990D0020F4078F00766D74 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22990CFF20F4078F00766D74 /* AppDelegate.m */; };
 		22990D0320F4078F00766D74 /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22990D0220F4078F00766D74 /* LoginScreenViewController.m */; };
 		22990D0620F4078F00766D74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22990D0420F4078F00766D74 /* Main.storyboard */; };
@@ -26,6 +31,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2253D48020F5C26100832AD4 /* ProfileFeedCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileFeedCollectionViewCell.h; sourceTree = "<group>"; };
+		2253D48120F5C26100832AD4 /* ProfileFeedCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileFeedCollectionViewCell.m; sourceTree = "<group>"; };
+		2253D48520F6DA4500832AD4 /* AddLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
+		2253D48620F6DA4500832AD4 /* AddLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
+		2253D48820F6DAF600832AD4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2253D48A20F6DCF100832AD4 /* LocationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationTableViewCell.h; sourceTree = "<group>"; };
+		2253D48B20F6DCF100832AD4 /* LocationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationTableViewCell.m; sourceTree = "<group>"; };
+		2253D48D20F80D0B00832AD4 /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		2253D48E20F80D0B00832AD4 /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		22990CFB20F4078F00766D74 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22990CFE20F4078F00766D74 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		22990CFF20F4078F00766D74 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2253D48920F6DAF700832AD4 /* MapKit.framework in Frameworks */,
 				6B28B7DAE0DD811389B85C6D /* libPods-Instagram.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +136,10 @@
 				22990D2D20F46C9000766D74 /* ProfileViewController.m */,
 				22990D2F20F46D4E00766D74 /* PostDetailViewController.h */,
 				22990D3020F46D4E00766D74 /* PostDetailViewController.m */,
+				2253D48520F6DA4500832AD4 /* AddLocationViewController.h */,
+				2253D48620F6DA4500832AD4 /* AddLocationViewController.m */,
+				2253D48D20F80D0B00832AD4 /* EditProfileViewController.h */,
+				2253D48E20F80D0B00832AD4 /* EditProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -132,6 +151,10 @@
 				22990D2320F4312F00766D74 /* PostTableViewCell.m */,
 				22990D2920F467A600766D74 /* UsernameHeaderView.h */,
 				22990D2A20F467A600766D74 /* UsernameHeaderView.m */,
+				2253D48020F5C26100832AD4 /* ProfileFeedCollectionViewCell.h */,
+				2253D48120F5C26100832AD4 /* ProfileFeedCollectionViewCell.m */,
+				2253D48A20F6DCF100832AD4 /* LocationTableViewCell.h */,
+				2253D48B20F6DCF100832AD4 /* LocationTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -148,6 +171,7 @@
 		23B2B238F95326D2D67B92FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2253D48820F6DAF600832AD4 /* MapKit.framework */,
 				56F75AD8A18719AE4BCC75C2 /* libPods-Instagram.a */,
 			);
 			name = Frameworks;
@@ -237,6 +261,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-resources.sh",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
@@ -244,6 +269,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
@@ -280,16 +306,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				22990D0320F4078F00766D74 /* LoginScreenViewController.m in Sources */,
+				2253D48720F6DA4500832AD4 /* AddLocationViewController.m in Sources */,
 				22990D1D20F4154100766D74 /* RegisterViewController.m in Sources */,
 				22990D2020F42FBB00766D74 /* CameraPostViewController.m in Sources */,
 				22990D0920F4078F00766D74 /* Instagram.xcdatamodeld in Sources */,
 				22990D2820F4320F00766D74 /* Post.m in Sources */,
 				22990D2B20F467A700766D74 /* UsernameHeaderView.m in Sources */,
+				2253D48C20F6DCF100832AD4 /* LocationTableViewCell.m in Sources */,
 				22990D1120F4079000766D74 /* main.m in Sources */,
 				22990D1A20F4142300766D74 /* HomeViewController.m in Sources */,
 				22990D2E20F46C9000766D74 /* ProfileViewController.m in Sources */,
 				22990D3120F46D4E00766D74 /* PostDetailViewController.m in Sources */,
+				2253D48F20F80D0B00832AD4 /* EditProfileViewController.m in Sources */,
 				22990D0020F4078F00766D74 /* AppDelegate.m in Sources */,
+				2253D48220F5C26100832AD4 /* ProfileFeedCollectionViewCell.m in Sources */,
 				22990D2420F4312F00766D74 /* PostTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

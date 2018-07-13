@@ -92,12 +92,14 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle"
   install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj"
   install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj"
   install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/pt-BR.lproj"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle"
   install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj"
   install_resource "${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj"
