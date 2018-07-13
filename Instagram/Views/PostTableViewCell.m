@@ -92,10 +92,12 @@
 }
 
 - (void) setupLikeButton {
-    if ([self.post[@"liked"] isEqual:@YES]){
-        [self.likeButton setImage:[UIImage imageNamed:@"instagram-Red-Heart"] forState:UIControlStateNormal];
-    } else {
-        [self.likeButton setImage:[UIImage imageNamed:@"Instagram-Heart-Transparent"] forState:UIControlStateNormal];
+    [self.likeButton setImage:[UIImage imageNamed:@"Instagram-Heart-Transparent"] forState:UIControlStateNormal];
+    NSMutableArray *likedUsers = self.post[@"likedUsers"];
+    for (PFUser *user in likedUsers) {
+        if ([PFUser.currentUser.objectId isEqualToString:user.objectId]) {
+            [self.likeButton setImage:[UIImage imageNamed:@"instagram-Red-Heart"] forState:UIControlStateNormal];
+        }
     }
 }
 

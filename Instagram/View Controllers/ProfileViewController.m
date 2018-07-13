@@ -46,12 +46,12 @@
     
     if (self.tabBarController.selectedIndex == 2) {
         self.user = PFUser.currentUser;
-    }
-    
-    if ([self.user.objectId isEqualToString:PFUser.currentUser.objectId]) {
         self.isCurrentUser = YES;
     } else {
-        self.isCurrentUser = NO;
+        self.isCurrentUser = NO;        
+        UIBarButtonItem *xButton =[[UIBarButtonItem alloc] initWithTitle:@"X" style:UIBarButtonItemStylePlain target:self action:@selector(Back_btn:)];
+
+        self.pageTitle.leftBarButtonItem = xButton;
     }
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 0.5)];
@@ -61,7 +61,6 @@
 
 - (void)viewDidLayoutSubviews {
     [self setupProfileImage];
-    [self setupCollectionView];
     [self setupEditProfileButton];
     [self setupPageTitleLabel];
     [self setupUsernameLabel];
@@ -70,6 +69,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupCollectionView];
 }
 
 -(void)setupUsernameLabel {
@@ -138,6 +138,10 @@
     if (self.isCurrentUser) {
         [self performSegueWithIdentifier:@"editProfileSegue" sender:self.editProfileButton];
     }
+}
+
+-(IBAction)Back_btn:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void) profileEdited {

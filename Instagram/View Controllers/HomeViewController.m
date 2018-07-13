@@ -16,8 +16,9 @@
 #import "CameraPostViewController.h"
 #import "PostDetailViewController.h"
 #import "MBProgressHUD.h"
+#import "ProfileViewController.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate, cameraPostDelegate, UIScrollViewDelegate>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate, cameraPostDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (weak, nonatomic) IBOutlet UITableView *postsTableView;
@@ -57,7 +58,7 @@
     [cell setPost];
     
     cell.postImage.tag = indexPath.row;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapForLike:)];
     tap.numberOfTapsRequired = 2;
     [cell.postImage addGestureRecognizer:tap];
     
@@ -88,16 +89,28 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    /* Create custom view to display section header... */
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 100)];
     headerView.backgroundColor = [UIColor whiteColor];
     
+    //pull post info to use
     Post *post = self.posts[section];
     PFUser *user = post.author;
-    /* Create custom view to display section header... */
+    
+    // username label
     UILabel *usernamelabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, tableView.frame.size.width, 20)];
     [usernamelabel setFont:[UIFont boldSystemFontOfSize:16]];
     usernamelabel.text = user.username;
+    usernamelabel.userInteractionEnabled = YES;
     
+    usernamelabel.tag = section;
+    UITapGestureRecognizer *usernameTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUsername:)];
+    [usernameTap setDelegate:self];
+    usernameTap.numberOfTapsRequired = 1;
+    [usernamelabel addGestureRecognizer:usernameTap];
+    
+    // location label if needed
     UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 25, tableView.frame.size.width, 20)];
     [locationLabel setFont:[UIFont systemFontOfSize:12 weight:UIFontWeightLight]];
     NSString *locationText = post[@"location"];
@@ -108,12 +121,19 @@
         locationLabel.text = locationText;
     }
     
-    
+    //profile pic
     PFImageView *image = [[PFImageView alloc] initWithFrame:CGRectMake(5, 5, 40, 40)];
     image.file = user[@"image"];
     [image loadInBackground];
     image.layer.cornerRadius = 20;
     image.clipsToBounds = YES;
+    image.userInteractionEnabled = YES;
+    
+    image.tag = section;
+    UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUsername:)];
+    [imageTap setDelegate:self];
+    imageTap.numberOfTapsRequired = 1;
+    [usernamelabel addGestureRecognizer:imageTap];
     
     [headerView addSubview:locationLabel];
     [headerView addSubview:usernamelabel];
@@ -130,8 +150,6 @@
         // When the user has scrolled past the threshold, start requesting
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.postsTableView.isDragging) {
             self.isMoreDataLoading = true;
-            
-            
         }
     }
 }
@@ -148,7 +166,7 @@
     }
 }
 
-- (void)handleTap:(UITapGestureRecognizer *)recognizer {
+- (void)doubleTapForLike:(UITapGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateRecognized) {
         // handling code
         CGPoint location = [recognizer locationInView:self.postsTableView];
@@ -156,6 +174,15 @@
         PostTableViewCell *cell = [self.postsTableView cellForRowAtIndexPath:indexPath];
         self.delegate = cell;
         [self.delegate doubleTapHit];
+    }
+}
+
+- (void)tapUsername:(UITapGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateRecognized) {
+        CGPoint location = [recognizer locationInView:self.postsTableView];
+        NSIndexPath *indexPath = [self.postsTableView indexPathForRowAtPoint:location];
+        PostTableViewCell *cell = [self.postsTableView cellForRowAtIndexPath:indexPath];
+        [self performSegueWithIdentifier:@"homeToProfileSegue" sender:cell];
     }
 }
 
@@ -212,10 +239,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    PostTableViewCell *cell = sender;
-    PostDetailViewController *postDetailViewController = [segue destinationViewController];
-    postDetailViewController.post = cell.post;
-    postDetailViewController.user = cell.user;
+    if ([segue.identifier isEqualToString:@"homeToProfileSegue"]) {
+        ProfileViewController *profileVC = [segue destinationViewController];
+        PostTableViewCell *cell = sender;
+        profileVC.user = cell.user;
+    }
 }
 
 @end

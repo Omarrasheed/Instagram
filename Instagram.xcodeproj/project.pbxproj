@@ -24,7 +24,6 @@
 		22990D2020F42FBB00766D74 /* CameraPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22990D1F20F42FBB00766D74 /* CameraPostViewController.m */; };
 		22990D2420F4312F00766D74 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22990D2320F4312F00766D74 /* PostTableViewCell.m */; };
 		22990D2820F4320F00766D74 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 22990D2720F4320F00766D74 /* Post.m */; };
-		22990D2B20F467A700766D74 /* UsernameHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22990D2A20F467A600766D74 /* UsernameHeaderView.m */; };
 		22990D2E20F46C9000766D74 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22990D2D20F46C9000766D74 /* ProfileViewController.m */; };
 		22990D3120F46D4E00766D74 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22990D3020F46D4E00766D74 /* PostDetailViewController.m */; };
 		6B28B7DAE0DD811389B85C6D /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F75AD8A18719AE4BCC75C2 /* libPods-Instagram.a */; };
@@ -61,8 +60,6 @@
 		22990D2320F4312F00766D74 /* PostTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
 		22990D2620F4320F00766D74 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		22990D2720F4320F00766D74 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
-		22990D2920F467A600766D74 /* UsernameHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsernameHeaderView.h; sourceTree = "<group>"; };
-		22990D2A20F467A600766D74 /* UsernameHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UsernameHeaderView.m; sourceTree = "<group>"; };
 		22990D2C20F46C9000766D74 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		22990D2D20F46C9000766D74 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		22990D2F20F46D4E00766D74 /* PostDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
@@ -149,8 +146,6 @@
 			children = (
 				22990D2220F4312F00766D74 /* PostTableViewCell.h */,
 				22990D2320F4312F00766D74 /* PostTableViewCell.m */,
-				22990D2920F467A600766D74 /* UsernameHeaderView.h */,
-				22990D2A20F467A600766D74 /* UsernameHeaderView.m */,
 				2253D48020F5C26100832AD4 /* ProfileFeedCollectionViewCell.h */,
 				2253D48120F5C26100832AD4 /* ProfileFeedCollectionViewCell.m */,
 				2253D48A20F6DCF100832AD4 /* LocationTableViewCell.h */,
@@ -311,7 +306,6 @@
 				22990D2020F42FBB00766D74 /* CameraPostViewController.m in Sources */,
 				22990D0920F4078F00766D74 /* Instagram.xcdatamodeld in Sources */,
 				22990D2820F4320F00766D74 /* Post.m in Sources */,
-				22990D2B20F467A700766D74 /* UsernameHeaderView.m in Sources */,
 				2253D48C20F6DCF100832AD4 /* LocationTableViewCell.m in Sources */,
 				22990D1120F4079000766D74 /* main.m in Sources */,
 				22990D1A20F4142300766D74 /* HomeViewController.m in Sources */,
