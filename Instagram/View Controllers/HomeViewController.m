@@ -157,6 +157,7 @@
         // When the user has scrolled past the threshold, start requesting
         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.postsTableView.isDragging) {
             self.isMoreDataLoading = true;
+            [self pullMorePosts];
         }
     }
 }
